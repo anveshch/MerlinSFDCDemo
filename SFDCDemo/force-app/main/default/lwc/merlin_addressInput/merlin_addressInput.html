@@ -1,0 +1,75 @@
+<template>
+
+    <div class="slds-form" role="list">
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem">
+                <legend class="slds-form-element__legend slds-form-element__label slds-form-element_horizontal">Address
+                    Details
+                </legend>
+            </div>
+        </div>
+
+
+
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item size="8">
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem">
+                <lightning-combobox class="  address-form-label slds-form-element_horizontal address-required "
+                    name="country" onchange={handleCountryChange} options={countryOptions}
+                    placeholder="Choose a country" dropdown-alignment="auto" label="Country"
+                    value={address_.BillingCountry} message-when-value-missing="Please choolse a country"
+                    variant={variant} required>
+                </lightning-combobox>
+            </div>
+
+            <div class="slds-form__item" role="listitem">
+                <lightning-input class=" address-form-label slds-form-element_horizontal " name="state"
+                    onchange={handleStateChange} label="State/Province" value={address_.BillingState} variant={variant}>
+                </lightning-input>
+            </div>
+        </div>
+
+        <div class="slds-form__row">
+
+            <div class="slds-form__item" role="listitem">
+                <lightning-input class=" address-form-label slds-form-element_horizontal address-required"
+                    onchange={handleStreetChange} label="Street" value={address_.BillingStreet} pattern="^(?!\s*$).+"
+                    name="street" message-when-value-missing="Please enter a street" variant={variant} required>
+                </lightning-input>
+            </div>
+
+            <div class="slds-form__item" role="listitem">
+                <lightning-input class=" address-form-label slds-form-element_horizontal  " name="street2"
+                    onchange={handleStreet2Change} label="Suite #" value={address_.BillingStreet2} variant={variant}>
+                </lightning-input>
+            </div>
+        </div>
+
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem">
+                <lightning-input class=" address-form-label slds-form-element_horizontal address-required"
+                    onchange={handleCityChange} label="City" value={address_.BillingCity} pattern="^(?!\s*$).+"
+                    name="city" message-when-value-missing="Please enter a city" required variant={variant}>
+                </lightning-input>
+            </div>
+
+            <div class="slds-form__item" role="listitem">
+                <lightning-input class=" address-form-label slds-form-element_horizontal "
+                    onchange={handlePostCodeChange} label="Postal Code" value={address_.BillingPostalCode} name="zip"
+                    pattern="^(?!\s*$).+" variant={variant}>
+                </lightning-input>
+            </div>
+        </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="4" class="addressinfo-background-css">
+               
+        </lightning-layout-item>
+        </lightning-layout>
+
+
+
+    </div>
+
+
+</template>

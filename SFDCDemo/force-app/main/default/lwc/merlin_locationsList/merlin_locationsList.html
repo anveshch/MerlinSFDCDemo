@@ -1,0 +1,33 @@
+<template>
+
+    <!-- Actions
+    <div>
+        <div class="slds-float-right" style="float:right;" slot="actions">
+            <lightning-button variant="brand" label="Make Payment" title="Make Payment" type="save" slot="actions"
+                icon-name="utility:jump_to_right" class="slds-p-around_xxx-small buttontextcss">
+            </lightning-button> &nbsp;
+
+        </div>
+    </div>
+    Actions-->
+
+    <!--Attractions List-->
+    <div class="slds-card slds-p-around_x-small">
+        <template if:true={loadAttactionsList}>
+            <div class="content attractiontile">
+                <template for:each={attractionsData} for:item="attraction">
+                    <c-merlin_location key={attraction.Id} location={attraction} locationcss={gridlistviewtype}>
+                    </c-merlin_location>
+                </template>
+            </div>
+        </template>
+    </div>
+    <!--Attractions List-->
+
+    <!--Generic SLDS Error Panel #NotinuseforNow-->
+    <template if:true={showError}>
+        <c-error-panel errors={errorMsg}></c-error-panel>
+    </template>
+
+
+</template>

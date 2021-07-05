@@ -1,0 +1,25 @@
+<template>
+    <!-- Custom Error block similar to Salesforce Toast -->
+    <template if:true={showErrorModal}>
+        <div style="height: 4rem; position:absolute;">
+            <div class="slds-notify_container slds-align_absolute-center">
+                <div class={toastClasses} role="status">
+                    <span class="slds-icon_container slds-m-right_small slds-no-flex slds-align-top">
+                        <lightning-icon icon-name={toastIcon} size="small" variant="inverse" class="slds-icon slds-icon_small"></lightning-icon>
+                    </span>
+                    <!-- Toast Content -->
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small">{titleStr}</h2>
+                        <h2 class="slds-text-heading_small messagecss"></h2>
+                    </div>
+                    <div class="slds-notify__close">
+                        <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick={closeModel}>
+                            <lightning-icon icon-name="utility:close" size="small" variant="inverse"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

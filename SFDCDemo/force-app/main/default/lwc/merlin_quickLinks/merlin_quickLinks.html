@@ -1,0 +1,50 @@
+<template>
+    <lightning-card title="Quick Links" icon-name="standard:decision">
+        <lightning-accordion allow-multiple-sections-open name="maincategory"
+            active-section-name={linksActiveSections}>
+            <lightning-accordion-section name="Passholder" label="Passholder Help">
+                <ul class="slds-has-block-links_space">
+                    <li>
+                        <a href="#">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="#">Membership</a>
+                    </li>
+                    <li>
+                        <a href="#">Passholder Accessibility</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </lightning-accordion-section>
+            <lightning-accordion-section name="Terms" label="Terms & Conditions">
+                <ul class="slds-has-block-links_space">
+                    <li>
+                        <a href="#">Annual space</a>
+                    </li>
+                    <li>
+                        <a href="#">Membership</a>
+                    </li>
+                    <li>
+                        <a href="#">Competetions</a>
+                    </li>
+                </ul>
+            </lightning-accordion-section>
+            <lightning-accordion-section name="Covid19" label="Covid 19 Info">
+                <ul class="slds-has-block-links_space">
+                    <li>
+                        <a href="#">New Exp Date Calender</a>
+                    </li>
+                    <li>
+                        <a href="#">Pre-Book Passholder Tickets</a>
+                    </li>
+                    <li>
+                        <a href="#">Case tracker</a>
+                    </li>
+                </ul>
+            </lightning-accordion-section>
+        </lightning-accordion>
+    </lightning-card>
+
+</template>

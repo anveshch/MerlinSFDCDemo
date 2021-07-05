@@ -1,0 +1,106 @@
+.content
+{
+  /*padding: 6px;*/
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+}
+
+a {
+    color: inherit;
+}
+.grid-view img
+{
+  min-height: 200px;
+  max-height: 200px;
+  /*max-width: 200px !important;
+  min-width: 200px !important;*/
+  border-radius: 0.25rem;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.location-name-css
+{
+
+  width: 100%;
+  display: inline-block; /* important */
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+}
+.location-name-css:hover { overflow:visible; word-wrap: break-word; white-space: break-spaces; } 
+
+
+
+/*------GRID VIEW CSS ------------*/
+.grid-view .content{
+  position: relative;
+  display: block;
+  flex: 1 1 0px;
+  transition: transform 500ms;
+}
+.grid-view:focus .content,
+.grid-view:hover .content,
+.grid-view:active .content{
+    transform: scale(1.05);
+    z-index: 10;  
+    background-color: rgb(3 45 96 / 90%);
+    color:white;
+}
+
+
+.grid-view .details-section {
+  display:none; 
+  /*padding: 6px;*/
+  border-radius: 0.25rem;
+}
+.grid-view:focus  .details-section,
+.grid-view:hover .details-section,
+.grid-view:active  .details-section{  
+    display:block ;     
+    z-index: 10;
+    position: absolute;
+    background-color: rgb(3 45 96 / 90%);
+    color:white;
+    border-radius: 0.25rem;
+    margin-top: -0.25%; 
+}
+
+.grid-view:focus .location-name-css,
+.grid-view:hover .location-name-css,
+.grid-view:active .location-name-css {   
+    color:white;
+}
+
+
+/*------GRID VIEW CSS ------------*/
+
+body {
+    overflow: hidden;
+}
+
+.content img {
+    display: block;
+}
+
+
+.details-section {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.details-section-col {
+  flex-direction: column;
+}
+.details-section .button {
+  padding: 0 3em;
+  text-align: center;
+}
+.button {
+  padding: 0 3em;
+  text-align: center;
+}
+

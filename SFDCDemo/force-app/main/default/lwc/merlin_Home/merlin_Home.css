@@ -1,0 +1,113 @@
+/* Main Page - Header, body , footer CSS */  
+template
+{
+ height:100%;
+}
+
+.slds-page-header
+{
+    background: #13294b; /* Header Background color */
+    max-height:75px;
+}
+ .slds-page-header__title, .slds-page-header__name-meta , .slds-col-footer, .slds-text-heading_small 
+{
+    color:white !important; /* Header,Fo0ter content text color */
+}
+
+.slds-mainbody-container
+{
+   /* position: absolute;*/
+    height: auto !important;
+    min-height: 100%;
+    width: 100%;
+}
+.bottomfooter
+{
+    height:30px;
+    bottom: 0px !important;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+/* Main Page - Header, body , footer CSS */  
+
+
+/* Modal CSS - Starts */
+.slds-modal__footer, .bottomfooter
+{
+    background: #13294b;
+    color:white;
+}
+.slds-modal__header
+{
+    background: #13294b;
+    color:white;
+
+}
+.slds-modal
+{
+    width:100% !important;
+}
+.slds-modal__container{ 
+    height : 100%; width: 100%; 
+  } 
+.slds-modal__container {
+    max-width: 80rem !important;
+    min-width: 78rem !important;
+}
+.slds-modal__container .slds-scrollable
+{    
+    background-color:#ffff;
+    min-height: 25rem;
+}
+/* Main Body CSS */  
+
+
+
+
+/* Cart CSS */  
+.cart-total-class
+{
+    background: red;
+    border-radius: 30px;
+    color: #ffff;
+    font-weight: bolder;
+    position: relative;
+    top: -14px;
+    left: -4px;
+}
+.oldprice-css
+{
+    text-decoration: line-through;
+}
+
+
+.minicart-overlay {
+    display:block;
+    height: 100%;
+    width: 25%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: rgb(19 41 75 / 85%);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.minicart-overlay-content {
+    position: relative;
+    /* top: 25%;
+   width: 30%;*/
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 30%;
+}
+.minicartfooter
+{
+  position: fixed;
+    bottom: 0;
+    width: 25%;
+    padding-bottom: 15px
+}
+/* Cart CSS */  

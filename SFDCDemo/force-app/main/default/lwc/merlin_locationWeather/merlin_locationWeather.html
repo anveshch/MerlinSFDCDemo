@@ -1,0 +1,20 @@
+<template>
+    <div class="locationweather body">
+        <div class="background-css">
+            <template if:true={renderWeatherDetails}>
+                <lightning-card title={selectedLocationInfo.Name__c}>
+                    <lightning-datatable hide-checkbox-column key-field="id" data={weatherData}
+                        columns={weathercolumns}>
+                    </lightning-datatable>
+
+                    <lightning-card icon-name="standard:topic" title="Location Map">
+                        <div class="slds-align_absolute-center color-blue">
+                        </div>
+                    </lightning-card>
+                    <lightning-map map-markers={mapMarkers} zoom-level={zoomLevel}>
+                    </lightning-map>
+                </lightning-card>
+            </template>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,73 @@
+<template>
+
+    <!-- Customer details section -->
+    <template if:true={renderCustomerDetailsForm}>
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item size="8">
+                <div class="slds-text-heading_small">
+                    <span class="slds-text-title_bold">Customer Information</span>
+                </div><br />
+                <div class="slds-box slds-theme_default">
+                    <div class="slds-m-around_medium">
+                        <lightning-input type="text" label="Name" onchange={onNameChange} required></lightning-input>
+                        <lightning-input type="tel" label="Phone" onchange={onPhoneChange} required></lightning-input>
+                        <lightning-input type="email" label="Email" onchange={onEmailChange} required></lightning-input>
+                        <lightning-input type="number" label="Age" onchange={onAgeChange} required></lightning-input>
+                        <lightning-input type="Date" label="Travel Date" onchange={onTravelDateChange} required>
+                        </lightning-input>
+
+                        <lightning-input type="file" onchange={onFileUpload} name="uploadFile" label="Upload File"
+                            required>
+                        </lightning-input> {fileName}
+                    </div>
+                    <div class="slds-align_absolute-center">
+                        <iframe id="locationIframe" width="100%" height="100"
+                        scrolling="no" style="background:transparent;border:0" src={googleCaptachURL}>
+                    </iframe>
+                </div>
+                    <div class="slds-align_absolute-center">
+                        <lightning-button label="Proceed" onclick={saveCustomerDetails}>
+                        </lightning-button>
+                    </div>
+                    
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="4" class="customerinfo-background-css">
+
+            </lightning-layout-item>
+        </lightning-layout>
+
+    </template>
+    <!-- Customer details section -->
+
+    <!-- Payment details section -->
+    <template if:true={renderPaymentDetailsForm}>
+        <lightning-radio-group name="paymentoption" label="Payment Options" options={paymentOptions} type="button"
+            value={selectedpayment} disabled></lightning-radio-group>
+        <c-merlin_address-input onaddresscomplete={handleAddressCompletion}></c-merlin_address-input>
+        <c-merlin_card-input oncardcomplete={handlePaymentProcess}></c-merlin_card-input>
+    </template>
+    <!-- Payment details section -->
+
+    <!-- Payment details section -->
+    <template if:true={renderFinalSuccessForm}>
+        <lightning-card variant="narrow"  class="slds-text-align_center">
+            <lightning-icon icon-name="action:approval" alternative-text="Approved" title="Approved"></lightning-icon>
+            <div class="slds-text-heading_small slds-align_absolute-center">
+                <span class="slds-text-title_bold">Pass generated successfully</span>
+            </div>
+        </lightning-card>
+        <c-merlin_pass-details record-id={passId}></c-merlin_pass-details>
+    </template>
+    <div>
+       
+       
+        
+    </div>
+    <!-- Payment details section -->
+
+    <!-- Generic Components -->
+    <c-generic_error-comp></c-generic_error-comp>
+    <!-- Generic Components -->
+
+</template>

@@ -1,0 +1,11 @@
+.slds-form-element_horizontal:not(.slds-form-element_readonly) {
+    margin-bottom: unset;
+  }
+
+.addressinfo-background-css
+{
+background-image: url("https://images.pexels.com/photos/6347909/pexels-photo-6347909.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260") !important; 
+background-position: center; 
+background-repeat: no-repeat; 
+background-size: cover; 
+}

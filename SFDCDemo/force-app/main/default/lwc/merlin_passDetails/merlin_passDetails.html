@@ -1,0 +1,57 @@
+<template>
+
+    
+     <template if:true={renderPassDetailsForm}>
+        <div class="slds-text-heading_small slds-text-align_center">
+            <span class="slds-text-title_bold slds-text-align_center">MERLIN'S PASS</span> 
+        </div><br/>
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item size="8">               
+                <div class="slds-box slds-theme_default">
+                    <span class="slds-text-title_bold r">Pass Info</span> 
+                     <!-- Pass details section -->
+                    <lightning-record-view-form record-id={recordId} object-api-name={objAPINamePass}>
+                        <div class="slds-box">
+                            <lightning-layout multiple-rows="true">
+                                <template for:each={FieldsListPass} for:item="fldCol">
+                                    <lightning-layout-item padding="around-x_small" key={fldCol} size="6">
+                                        <lightning-output-field key={fldCol} field-name={fldCol}>
+                                        </lightning-output-field>
+                                    </lightning-layout-item>
+                                </template>
+                            </lightning-layout>
+                        </div>
+                    </lightning-record-view-form>
+                     <!-- Pass details section -->
+                    <template if:true={renderCustomerInfo}>
+                    <span class="slds-text-title_bold r">User Info</span> 
+                    <!-- user details section -->
+                    <lightning-record-view-form record-id={customerrecordId} object-api-name={objAPINameCustomer}>
+                        <div class="slds-box">
+                            <lightning-layout multiple-rows="true">
+                                <template for:each={FieldsListCustomer} for:item="fldCol">
+                                    <lightning-layout-item padding="around-x_small" key={fldCol} size="6">
+                                        <lightning-output-field key={fldCol} field-name={fldCol}>
+                                        </lightning-output-field>
+                                    </lightning-layout-item>
+                                </template>
+                            </lightning-layout>
+                        </div>
+                    </lightning-record-view-form>
+                     <!-- user details section -->
+                </template>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="4">
+                <template if:true={imageUrl}>
+                    <img src={imageUrl} style="width:250px;height:250px"/>
+                </template>   
+               
+            </lightning-layout-item>
+        </lightning-layout>
+      
+    </template>
+    
+
+    
+</template>

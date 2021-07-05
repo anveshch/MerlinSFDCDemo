@@ -1,0 +1,50 @@
+<template>
+
+    <div style="position: relative;" class={locationcss}>
+        <div class="content col-xs-6  ">
+            <div if:true={isgridviewtype}>
+                <a class="contentImg">
+                    <img src={image} class="location slds-align_absolute-center" alt="location picture" />
+                </a>
+               
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-item size="12">
+                        <div class="slds-text-title_bold  slds-text-align_center location-name-css slds-truncate">{name}</div>
+                    </lightning-layout-item>
+                                    
+                    <lightning-layout-item size="5">
+                        <div class="slds-text-align_center">
+                            <lightning-button variant="brand-outline" style="zoom:0.8" label="Add to cart" title="Add to cart"
+                                icon-name="utility:cart" onclick={handleAddToCart} class="slds-m-left_x-small">
+                            </lightning-button>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <div if:true={price} class="slds-text-body_small slds-text-title_bold slds-text-align_center">{price} $</div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <div class="slds-text-align_center">
+                            <lightning-icon class="slds-text-align_right" if:true={selected}
+                                icon-name="utility:checkout" size="small" alternative-text="Selected" title="Selected">
+                            </lightning-icon>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <div class="slds-text-align_center">
+                            <lightning-button-icon icon-name="action:info" onclick={handleLocationDetails}
+                               ></lightning-button-icon><!-- tooltip="Location Details" commenting due to VF Page issues-->
+                        </div>
+                    </lightning-layout-item> 
+                   
+                </lightning-layout>
+
+                <div class="details-section slds-align_absolute-center">
+                    <!--  We can add Attraction details here, On hover those are displayed -->
+                </div>
+            </div>
+        </div>
+
+        <c-generic_error-comp></c-generic_error-comp>
+
+    </div>
+</template>

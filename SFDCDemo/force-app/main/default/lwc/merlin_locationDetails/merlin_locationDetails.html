@@ -1,0 +1,40 @@
+<template>
+    <lightning-card>
+        <template if:true={showLocationInfo}>
+            <lightning-tabset>
+                <!-- Location Details Tab -->
+                <lightning-tab label="Details">
+                    <lightning-record-view-form record-id={recordId} object-api-name={objAPIName}>
+                        <div class="slds-box">
+                            <lightning-layout multiple-rows="true">
+                                <template for:each={FieldsList} for:item="fldCol">
+                                    <lightning-layout-item padding="around-x_small" key={fldCol} size="6">
+                                        <lightning-output-field key={fldCol} field-name={fldCol}>
+                                        </lightning-output-field>
+                                    </lightning-layout-item>
+                                </template>
+                            </lightning-layout>
+                        </div>
+                    </lightning-record-view-form>
+                </lightning-tab>
+                  <!-- 360 Image Tab -->
+                <lightning-tab label="360 View">
+                    <iframe id="locationIframe" width="100%" height="600"
+                    scrolling="no" style="background:transparent;border:0" src="https://www.marzipano.net/demos/sample-tour/">
+                </iframe>
+                </lightning-tab>
+                 <!-- Weather & Map Tab -->
+                <lightning-tab label="Weather & Map">
+                   <c-merlin_location-weather selected-location-info={selectedLocationInfo}></c-merlin_location-weather>
+                </lightning-tab>
+            </lightning-tabset>
+          
+        </template>
+
+        <!-- Default Msg -->
+        <template if:false={showLocationInfo}>
+            <c-default-msg-placeholder message="Select a Location to see details"></c-default-msg-placeholder>
+        </template>
+        <!-- Default Msg -->
+    </lightning-card>
+</template>

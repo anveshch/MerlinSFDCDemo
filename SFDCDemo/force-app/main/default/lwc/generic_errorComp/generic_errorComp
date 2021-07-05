@@ -1,0 +1,8 @@
+.slds-notify__content
+{
+    max-width: 400px; 
+}
+.messagecss
+{
+    word-wrap: break-word;
+}

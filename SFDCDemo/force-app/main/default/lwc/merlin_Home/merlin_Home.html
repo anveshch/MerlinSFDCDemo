@@ -1,0 +1,242 @@
+<template>
+
+       <!--Below check to load template after all data fetch operations are done-->
+    <template if:true={renderMerlinHomePage}>
+        <!--Header with Title Starts-->
+        <div class="slds-page-header slds-scrollable_none">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_3-of-12">
+                    <div class="slds-page-header__col-title">
+                        <div class="slds-media">
+                            <div class="slds-media__figure ">
+                                <span class="slds-icon_container slds-icon-standard-groups" title="Proposal"
+                                    style="border-radius:50%;">
+                                    <img width=50 height=50 src={imageURL} />
+                                </span>
+                            </div>
+                            &nbsp;
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title slds-truncate">Merlin Pass &nbsp;
+                                        </span>
+                                    </h1>
+                                    <p class="slds-page-header__name-meta">Merlin Pass for Attractions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-size_1-of-12 slds-text-heading_small slds-text-align_right">
+                    <span class="slds-text-link_faux"> Home</span>
+                </div>
+                <div class="slds-size_1-of-12 slds-text-heading_small slds-text-align_center">
+                    <span class="slds-text-link_faux slds-text-title_bold"> Buy Pass</span>
+                </div>
+                <div class="slds-size_2-of-12">
+                </div>
+                <div class="slds-size_2-of-12">
+                    <div class="slds-text-align_right" slot="actions">
+                        <lightning-icon onclick={handleMinicartPopup} icon-name="standard:webcart" size="medium"
+                            alternative-text="Cart" title="Cart">
+                        </lightning-icon>
+                        <span if:true={showCartCount} id="minCartTotal" class="cart-total-class"
+                            style="padding: 0px 4px;">
+                            {cartAttractionsCount}
+                        </span>
+                    </div>
+                </div>
+                <div class="slds-size_2-of-12 slds-text-align_center">
+                    <lightning-button variant="brand" label="Make Payment" title="Make Payment" type="save"
+                        slot="actions" icon-name="utility:payment_gateway"
+                        class="slds-p-around_xxx-small " onclick={handlePaymentInfoRequest}>
+                    </lightning-button>
+                </div>
+
+            </div>
+        </div>
+        <!--Header with Title Ends-->
+
+        <div class="slds-mainbody-container slds-theme_shade slds-theme_alert-texture">
+            <lightning-layout horizontal-align="spread" multiple-rows>
+                <lightning-layout-item padding="around-small" size="2">
+                   <c-merlin_quick-Links></c-merlin_quick-Links>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="10">
+                    <!--List of all attractions-->
+                    <c-merlin_locations-list attractions-data={attractionsList}
+                        onlocationselected={handleLocationUpdation} onlocationinforequest={handleLocationInfoRequest}> </c-merlin_locations-list>
+
+                </lightning-layout-item>
+            </lightning-layout>
+
+
+            <!---#Cart Overlay -->
+            <template if:true={showMinicartPopup}>
+                <div data-id="minicartsecid" class="minicart-overlay productListMiniCart">
+
+                    <lightning-button-icon icon-name="utility:close" size="large" variant="bare"
+                        alternative-text="Close" title="Close" onclick={closeModal}></lightning-button-icon>
+                    <div class="slds-page-header">
+                        <div class="slds-page-header__row">
+                            <div class="slds-page-header__col-title">
+                                <div class="slds-media slds-align_absolute-center">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container slds-page-header__title slds-truncate"
+                                            title="Minicart">
+                                            <lightning-icon icon-name="standard:webcart" size="medium"></lightning-icon>
+                                            &nbsp; <span>Cart</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="minicart-overlay-content">
+                        <div class="slds-scrollable minicart-overlay-content-article">
+                            <div if:true={discount} class="slds-text-heading_small">Discount applied : <b> {discount}
+                                    %</b> </div>
+                            <br />
+                            <template if:true={selectedLocations}>
+                                <template for:each={selectedLocations} for:item="loc">
+                                    <article class="slds-card" key={loc.Id} style="margin-left: 2%;margin-right: 2%;">
+                                        <div class="slds-card__header slds-grid">
+                                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                                <div class="slds-media__body">
+                                                    <h2 class="slds-card__header-title">
+                                                    </h2>
+                                                </div>
+                                                <div class="slds-no-flex">
+                                                </div>
+                                            </header>
+                                        </div>
+                                        <div class="slds-card__body slds-card__body_inner slds-grid">
+                                            <div class="slds-truncate slds-text-title_bold slds-size_2-of-6">
+                                                {loc.Name__c} 
+                                            </div>
+                                            <div class="slds-truncate slds-text-title_bold slds-size_1-of-6 oldprice-css">
+                                                <lightning-formatted-number  if:true={discount} value={loc.oldprice} format-style="currency"
+                                                    currency-code="USD" currency-display-as="symbol" class="oldprice-css">
+                                                </lightning-formatted-number>
+                                            </div>
+                                            <div class="slds-truncate slds-text-title_bold slds-size_2-of-6">
+                                               &nbsp;  <lightning-formatted-number value={loc.Price__c} format-style="currency"
+                                                    currency-code="USD" currency-display-as="symbol">
+                                                </lightning-formatted-number>
+                                            </div>
+                                            <div class="slds-truncate slds-text-title_bold slds-size_1-of-6">
+                                                <lightning-button-icon disabled class="iconBtnClass deleteCSSClass"
+                                                    icon-name="utility:delete"></lightning-button-icon>
+
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+
+                                </template>
+
+
+                            </template>
+                            <br />
+                            <div class="slds-text-heading_small">Total Net Price : <span class="oldprice-css" if:true={discount}>{oldnetPrice}</span> <b> $ {netPrice} </b> </div>
+
+                        </div>
+                        <footer class="slds-card__footer">
+                            <lightning-button variant="brand" label="Make Payment" title="Make Payment" type="save"
+                                slot="actions" icon-name="utility:payment_gateway"
+                                class="slds-p-around_xxx-small buttontextcss" onclick={handlePaymentInfoRequest}>
+                            </lightning-button>
+                            <lightning-button label="Close" title="Close" type="close" slot="actions"
+                                icon-name="utility:close" class="slds-p-around_xxx-small buttontextcss">
+                            </lightning-button>
+
+                        </footer>
+                    </div>
+                </div>
+            </template>
+            <!---#Cart Overlay -->
+
+            <!-- Location Card Section- Location Details with Image, Map & Weather -->
+				<template if:true={showLocationCard}>
+					<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+						aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+						<div class="slds-modal__container">
+							<header class="slds-modal__header">
+								<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+									title="Close" onclick={closeModal}>
+									<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+										size="small"></lightning-icon>
+									<span class="slds-assistive-text">Close</span>
+								</button>
+								<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+									Location Details</h2>
+							</header>
+							<div class="slds-scrollable">
+                                <c-merlin_location-Details selected-location-info={selectedLocInfo}></c-merlin_location-Details>
+							</div>
+							<footer class="slds-modal__footer">
+								<button class="slds-button slds-button_neutral" onclick={closeModal}
+									title="Close">Close</button>
+							</footer>
+						</div>
+					</section>
+					<div class="slds-backdrop slds-backdrop_open"></div>
+				</template>
+			<!-- Location Card Section- Location Details with Image, Map & Weather -->
+
+              <!-- Payment Card Section- Card with customer details, Payment details, Pass Details -->
+				<template if:true={showPaymentCard}>
+					<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+						aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+						<div class="slds-modal__container">
+							<header class="slds-modal__header">
+								<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+									title="Close" onclick={closeModal}>
+									<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+										size="small"></lightning-icon>
+									<span class="slds-assistive-text">Close</span>
+								</button>
+								<h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">
+									Payment</h2>
+							</header>
+							<div class="slds-scrollable">
+                                <c-merlin_payment-forms selected-location-info={selectedLocInfo} netprice={netPrice} discount={discount} loaded-pass-id={loadedPassId}></c-merlin_payment-forms>
+							</div>
+							<footer class="slds-modal__footer">
+								<button class="slds-button slds-button_neutral" onclick={closeModal}
+									title="Close">Close</button>
+							</footer>
+						</div>
+					</section>
+					<div class="slds-backdrop slds-backdrop_open"></div>
+				</template>
+			<!-- Payment Card Section- Card with customer details, Payment details, Pass Details -->
+
+            <!-- Footer Section -->
+            <footer role="contentinfo" class="slds-modal__footer bottomfooter">
+                <div class="slds-grid slds-grid_align-spread">
+                    <p class="slds-col-footer">@ Merlin</p>
+                </div>
+            </footer>
+            <!-- Footer Section -->
+        </div>
+
+    </template>
+
+    <!--Pass Details - This is loaded when user opens pass from Email URL -->
+    <template if:true={renderPassDetailsPage}>
+            <c-merlin_pass-details record-id={loadedPassId} ></c-merlin_pass-details>
+    </template>
+      <!--Pass Details - This is loaded when user opens pass from Email URL -->
+
+
+     <!--Generic SLDS Error Panel #NotinuseforNow-->
+     <template if:true={showError}>
+        <c-error-panel errors={errorMsg}></c-error-panel>
+    </template>
+    
+    <!-- Generic Components -->
+    <c-generic_error-comp></c-generic_error-comp>
+    <!-- Generic Components -->
+</template>
