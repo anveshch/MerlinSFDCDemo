@@ -1,0 +1,22 @@
+<template>
+    <template if:true={spinEnable}>
+        <!-- Custom Spinner -->
+        <template if:true={isCustomSpin}>
+            <div id="spinCustMainId" class="slds-backdrop slds-backdrop_open"> <!--class="slds-backdrop slds-backdrop_open"-->
+                <p class="loadingMsg">Processing..</p>
+                <div>
+                    <img class="loadingImage" width={widthHeightStr} height={widthHeightStr} src={imageURL}/>
+                </div>
+            </div>
+        </template>
+        <!-- Standard Spinner -->
+        <template if:false={isCustomSpin}>
+           
+            <div id="spinStdMainId" class={spinnerDynamicClass}> 
+                
+                <lightning-spinner alternative-text="Loading" variant={variantStr} size={sizeStr} data-text={spinnerText} class="spinnerWithText"></lightning-spinner>
+                
+            </div>
+        </template>
+    </template>
+</template>

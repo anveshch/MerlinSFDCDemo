@@ -1,0 +1,45 @@
+/* To rotate the image */
+.loadingImage
+{
+    border-radius:50%;
+    left:48%;
+    top:35%;
+    animation:spin 3s linear infinite;
+    position:absolute;
+}
+
+.loadingMsg
+{
+    font-size:large;
+    left:49%;
+    top:54%;
+    position:absolute;
+    color:white;
+    font-weight: bold;
+}
+
+@keyframes spin
+{
+    0%
+    {
+        transform:rotate(0deg);
+    }
+    100%
+    {
+        transform:rotate(360deg);
+    }
+}
+
+/* To make it available in the center */
+.spinnerClass
+{
+    position: absolute;
+}
+.spinnerWithText::after{
+    position: absolute;
+    content:attr(data-text);
+    width:100%;
+    text-align:center;
+    font-weight: bold;
+    top:56%;
+}
