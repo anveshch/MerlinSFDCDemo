@@ -38,6 +38,10 @@ import { LightningElement, track, api} from 'lwc';
     @track googleCaptachURL;
     @track isguestuser;
 
+    //spinner
+    showSpin = false;
+    cusSpin = false;
+
 
     connectedCallback()
     {
@@ -142,6 +146,10 @@ import { LightningElement, track, api} from 'lwc';
 
    //Create Customer Record Object 
    saveRecord() {  
+     //Switch on SPinner
+     this.showSpin = true;
+     this.cusSpin = true;
+
     var customerObj = {  
       'sobjectType': 'Merlin_Customer__c',  
       'Name__c': this.name,  
@@ -163,10 +171,16 @@ import { LightningElement, track, api} from 'lwc';
            this.template.querySelector("c-generic_error-comp").setErrorMsgParam('Customer Information Saved', 'All the data submitted were safe & secured with us ' , "success");
             this.renderCustomerDetailsForm = false;
             this.renderPaymentDetailsForm = true;
+             //Switch off Spinner
+            this.showSpin = false;
+            this.cusSpin = false;
           
         }  
       }).catch(error => {  
-        console.log('error ', error);  
+        console.log('error ', error); 
+         //Switch off Spinner
+         this.showSpin = false;
+         this.cusSpin = false; 
       });  
   } 
 
